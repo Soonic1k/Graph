@@ -5,7 +5,7 @@ from pyamaze import maze,agent,COLOR,textLabel
 from timeit import timeit
 
 m=maze(20,30)
-m.CreateMaze(2,10,loopPercent=100)
+m.CreateMaze(2,10,loopPercent=100,loadMaze='pathMaze.csv')
 
 searchPath,dfsPath,fwdDFSPath=DFS(m)
 bSearch,bfsPath,fwdBFSPath=BFS(m)
