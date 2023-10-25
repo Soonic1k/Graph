@@ -3,6 +3,7 @@ from DFSDemo import DFS
 from dijkstraMaze import dijkstra
 from pyamaze import maze,agent,COLOR,textLabel
 from timeit import timeit
+import pandas as pd
 
 m=maze(20,30)
 m.CreateMaze(2,10,loopPercent=100,loadMaze='pathMaze.csv')
@@ -44,4 +45,19 @@ textLabel(m,'DFS - Tempo:',t1)
 textLabel(m,'BFS - Tempo:',t2)
 textLabel(m,'Dijkstra - Tempo:',t3)
 
+# Resultados
+df = pd.DataFrame(columns=['Tipo', 'Passos', 'Tamanho da Busca - Custo', 'Tempo'])
+
+linha1 = pd.Series({'Tipo': 'DFS', 'Passos': len(fwdDFSPath)+1, 'Tamanho da Busca - Custo': len(searchPath)+1, 'Tempo': t1})
+linha2 = pd.Series({'Tipo': 'BFS', 'Passos': len(fwdBFSPath)+1, 'Tamanho da Busca - Custo': len(bSearch)+1, 'Tempo': t2})
+linha3 = pd.Series({'Tipo': 'Dijkstra', 'Passos': len(fwdDijPath)+1, 'Tamanho da Busca - Custo': cDij, 'Tempo': t3})
+
+df = df._append(linha1, ignore_index=True)
+df = df._append(linha2, ignore_index=True)
+df = df._append(linha3, ignore_index=True)
+
+df.to_csv('Resultados.csv', index=False)
+
 m.run()
+
+
