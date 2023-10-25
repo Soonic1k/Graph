@@ -8,4 +8,4 @@ Projeto para a disciplina de Teoria dos Grafos.
 
 ## Bibliografia
 
-Pyamaze: [![pyamaze]](https://github.com/MAN1986/pyamaze)
+Pyamaze: [[pyamaze]](https://github.com/MAN1986/pyamaze)
