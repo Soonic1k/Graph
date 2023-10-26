@@ -68,20 +68,10 @@ dfBFSpath = dfBFSpath._append(fwdBFSPath, ignore_index=True)
 dfDFSPath = dfDFSPath._append(DFSpath, ignore_index=True)
 dfDijkstraPath = dfDijkstraPath._append(Dijkstrapath, ignore_index=True)
 
-dfBFSpath.drop([0,1])
-dfDFSPath.drop([0,1])
-dfDijkstraPath.drop([0,1])
-
-dfBFSpath = dfBFSpath.reset_index(drop=True)
-dfDFSPath = dfDFSPath.reset_index(drop=True)
-dfDijkstraPath = dfDijkstraPath.reset_index(drop=True)
-
-df.to_csv('Resultados.csv', index=False)
+df.to_csv('Resultados.csv', index=False, sep=';')
 dfBFSpath.to_csv('BFS.csv', index=False, sep=';')
 dfDFSPath.to_csv('DFS.csv', index=False, sep=';')
 dfDijkstraPath.to_csv('Dijkstra.csv', index=False, sep=';')
-
-print(fwdBFSPath)
 
 m.run()
 
