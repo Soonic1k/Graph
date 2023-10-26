@@ -46,17 +46,42 @@ textLabel(m,'BFS - Tempo:',t2)
 textLabel(m,'Dijkstra - Tempo:',t3)
 
 # Resultados
+
 df = pd.DataFrame(columns=['Tipo', 'Passos', 'Tamanho da Busca - Custo', 'Tempo'])
+dfBFSpath = pd.DataFrame()
+dfDFSPath = pd.DataFrame()
+dfDijkstraPath = pd.DataFrame()
 
 linha1 = pd.Series({'Tipo': 'DFS', 'Passos': len(fwdDFSPath)+1, 'Tamanho da Busca - Custo': len(searchPath)+1, 'Tempo': t1})
 linha2 = pd.Series({'Tipo': 'BFS', 'Passos': len(fwdBFSPath)+1, 'Tamanho da Busca - Custo': len(bSearch)+1, 'Tempo': t2})
 linha3 = pd.Series({'Tipo': 'Dijkstra', 'Passos': len(fwdDijPath)+1, 'Tamanho da Busca - Custo': cDij, 'Tempo': t3})
 
+BFSpath = pd.Series(fwdBFSPath)
+DFSpath = pd.Series(fwdDFSPath)
+Dijkstrapath = pd.Series(fwdDijPath)
+
 df = df._append(linha1, ignore_index=True)
 df = df._append(linha2, ignore_index=True)
 df = df._append(linha3, ignore_index=True)
 
+dfBFSpath = dfBFSpath._append(fwdBFSPath, ignore_index=True)
+dfDFSPath = dfDFSPath._append(DFSpath, ignore_index=True)
+dfDijkstraPath = dfDijkstraPath._append(Dijkstrapath, ignore_index=True)
+
+dfBFSpath.drop([0,1])
+dfDFSPath.drop([0,1])
+dfDijkstraPath.drop([0,1])
+
+dfBFSpath = dfBFSpath.reset_index(drop=True)
+dfDFSPath = dfDFSPath.reset_index(drop=True)
+dfDijkstraPath = dfDijkstraPath.reset_index(drop=True)
+
 df.to_csv('Resultados.csv', index=False)
+dfBFSpath.to_csv('BFS.csv', index=False, sep=';')
+dfDFSPath.to_csv('DFS.csv', index=False, sep=';')
+dfDijkstraPath.to_csv('Dijkstra.csv', index=False, sep=';')
+
+print(fwdBFSPath)
 
 m.run()
 
