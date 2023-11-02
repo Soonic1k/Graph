@@ -5,8 +5,9 @@ from pyamaze import maze,agent,COLOR,textLabel
 from timeit import timeit
 import pandas as pd
 
-m=maze(20,30)
-m.CreateMaze(2,10,loopPercent=100,loadMaze='pathMaze.csv')
+m=maze(20,20)
+m.CreateMaze(loopPercent=100, loadMaze='pathMaze.csv')
+
 
 searchPath,dfsPath,fwdDFSPath=DFS(m)
 bSearch,bfsPath,fwdBFSPath=BFS(m)
@@ -29,13 +30,13 @@ e=agent(m,footprints=True,color=COLOR.yellow,shape='arrow')
 f=agent(m,footprints=True,color=COLOR.green,shape='arrow')
 
 
-m.tracePath({a:fwdBFSPath},delay=50,kill=True)
-m.tracePath({b:fwdDFSPath},delay=50,kill=True)
-m.tracePath({c:fwdDijPath},delay=50,kill=True)
+m.tracePath({a:fwdBFSPath},delay=60,kill=True)
+m.tracePath({b:fwdDFSPath},delay=60,kill=True)
+m.tracePath({c:fwdDijPath},delay=60,kill=True)
 
-m.tracePath({d:fwdBFSPath},delay=50)
-m.tracePath({e:fwdDFSPath},delay=50)
-m.tracePath({f:fwdDijPath},delay=50)
+m.tracePath({d:fwdBFSPath},delay=60)
+m.tracePath({e:fwdDFSPath},delay=60)
+m.tracePath({f:fwdDijPath},delay=60)
 
 t1=timeit(stmt='DFS(m)',number=1000,globals=globals())
 t2=timeit(stmt='BFS(m)',number=1000,globals=globals())
